@@ -2,8 +2,6 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.3'
 
-gem 'sqlite3'
-
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -19,6 +17,10 @@ end
 group :development do
   # To use debugger
   gem 'ruby-debug19', :require => 'ruby-debug'
+end
+
+group :development, :test do
+  gem 'sqlite3'
 end
 
 gem 'jquery-rails'
