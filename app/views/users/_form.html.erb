@@ -1,39 +1,24 @@
 <%= form_for @user do |f| %>
-    <% if @user.errors.any? %>
-        <div class="error_messages">
-            <h2>Form is invalid</h2>
-            <ul>
-                <% for message in @user.errors.full_messages %>
-                    <li><%= message %></li>
-                <% end %>
-            </ul>
-        </div>
-    <% end %>
-    <div class="field">
-        <%= f.label :email %>
-        <%= f.text_field :email %>
-    </div>
-    <div class="field">
-        <%= f.label :first_name %>
-        <%= f.text_field :first_name %>
-    </div>
-    <div class="field">
-        <%= f.label :last_name %>
-        <%= f.text_field :last_name %>
-    </div>
+    <%= render 'shared/error_messages', :object => f.object %>
+    <%= render 'basic_fields', :f => f %>
     <% if User.exists? @user.id %>
-    <div class="field">
-      <%= f.label :current_password %>
-      <%= f.password_field :current_password %>
-    </div>
+        <%
+          if f.object.errors.include?(:password)
+            start_display = "block"
+          else
+            start_display = "none"
+          end
+        %>
+        <a id="change_password_toggler" href="#">Change Password?</a>
+        <div id="change_password_fields" style="display: <%= start_display %>" >
+            <div class="field">
+                <%= f.label :current_password %>
+                <%= f.password_field :current_password %>
+            </div>
+            <%= render 'password_fields', :f => f %>
+        </div>
+    <% else %>
+        <%= render 'password_fields', :f => f %>
     <% end %>
-    <div class="field">
-        <%= f.label :password %>
-        <%= f.password_field :password %>
-    </div>
-    <div class="field">
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation %>
-    </div>
     <div class="actions"><%= f.submit %></div>
 <% end %>

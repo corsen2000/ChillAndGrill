@@ -7,7 +7,7 @@ body {
 #container {
     width: 1080px;
     margin: 0 auto;
-    div {
+    > div {
         padding: 0 5px;
     }
     #header {
