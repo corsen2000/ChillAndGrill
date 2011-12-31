@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :correct_user, :only => [:edit, :update]
 
   def index
     @users = User.all
@@ -39,6 +40,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     redirect_to users_url
+  end
+
+  private
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_path) unless current_user?(@user)
   end
 
 end
