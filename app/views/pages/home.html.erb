@@ -1,7 +1,9 @@
-<h1>Welcome to the home page!</h1>
-
 <% if signed_in? %>
-    You are signed in, lets show events
+    <h1>Welcome <%= current_user.first_name %></h1>
+    <h2>Upcoming Events</h2>
 <% else %>
-    Your not signed in, you should do so, or sign up
+    <h1>Welcome to Chill And Grill</h1>
+    <p>
+      Chill And Grill is the best place to find grilling events hosted by Bryan and Shannon.
+    </p>
 <% end %>

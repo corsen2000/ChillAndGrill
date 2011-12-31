@@ -9,7 +9,7 @@
 <body>
     <div id="container">
         <div id="header">
-            Chill And Grill!
+            <%= link_to "Chill And Grill!", root_path %>
             <div id="quick_links">
                 <% if not current_user %>
                     <%= link_to 'Sign In', new_session_path %>
