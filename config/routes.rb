@@ -1,5 +1,5 @@
 ChillAndGrill::Application.routes.draw do
-  root :to => 'users#index'
+  root :to => 'pages#home'
   resources :users
   resource :session, :controller => "session", :only => [:new, :create, :destroy]
 
