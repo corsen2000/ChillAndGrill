@@ -11,8 +11,12 @@
         <div id="header">
             Chill And Grill!
             <div id="quick_links">
-                <%= link_to 'Sign In', "#" %>
-                <%= link_to 'Create Account', new_user_path %>
+                <% if not current_user %>
+                    <%= link_to 'Sign In', new_session_path %>
+                    <%= link_to 'Create Account', new_user_path %>
+                <% else %>
+                    <%= link_to "Sign out", session_path, :method => :delete %>
+                <% end %>
             </div>
         </div>
         <div id="flash">
