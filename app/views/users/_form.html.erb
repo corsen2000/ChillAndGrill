@@ -3,7 +3,7 @@
     <%= render 'basic_fields', :f => f %>
     <% if User.exists? @user.id %>
         <%
-          if f.object.errors.include?(:password)
+          if f.object.errors.include?(:password) or f.object.errors.include?(:current_password)
             start_display = "block"
           else
             start_display = "none"
