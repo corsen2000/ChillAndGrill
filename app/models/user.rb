@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   attr_accessor :current_password
   has_secure_password
   validates_presence_of :email, :first_name, :last_name
-  #validates_presence_of :password, :password_confirmation, :on => :update
+  validates :email, :email => true, :uniqueness => true
   validate :confirm_current_password, :on => :update
 
   def self.authenticate(user_id)
