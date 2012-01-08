@@ -15,6 +15,9 @@
                     <%= link_to 'Sign In', new_session_path %>
                     <%= link_to 'Create Account', new_user_path %>
                 <% else %>
+                    <% if can? :manage, Event %>
+                        <%= link_to "Event Management", events_path %>
+                    <% end %>
                     <%= link_to 'Settings', edit_user_path(current_user) %>
                     <%= link_to "Sign out", session_path, :method => :delete %>
                 <% end %>
