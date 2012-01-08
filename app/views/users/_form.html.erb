@@ -20,5 +20,13 @@
     <% else %>
         <%= render 'password_fields', :f => f %>
     <% end %>
+    <div class="field">
+        <%= f.label :roles %> <br/>
+        <% for role in User::ROLES %>
+            <%= check_box_tag "user[roles][]", role, @user.roles.include?(role), :id => "#{role}_check" %>
+            <%= label_tag nil, role.humanize, :for => "#{role}_check" %> <br />
+        <% end %>
+        <%= hidden_field_tag "user[roles][]", "" %>
+    </div>
     <div class="actions"><%= f.submit %></div>
 <% end %>
