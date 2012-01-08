@@ -3,30 +3,32 @@
     <%= render 'basic_fields', :f => f %>
     <% if User.exists? @user.id %>
         <%
-          if f.object.errors.include?(:password) or f.object.errors.include?(:current_password)
-            start_display = "block"
-          else
-            start_display = "none"
-          end
+           if f.object.errors.include?(:password) or f.object.errors.include?(:current_password)
+               start_display = "block"
+           else
+               start_display = "none"
+           end
         %>
         <a id="change_password_toggler" href="#">Change Password?</a>
-        <div id="change_password_fields" style="display: <%= start_display %>" >
-            <div class="field">
-                <%= f.label :current_password %>
-                <%= f.password_field :current_password %>
-            </div>
-            <%= render 'password_fields', :f => f %>
+        <div id="change_password_fields" style="display: <%= start_display %>">
+          <div class="field">
+            <%= f.label :current_password %>
+            <%= f.password_field :current_password %>
+          </div>
+          <%= render 'password_fields', :f => f %>
         </div>
     <% else %>
         <%= render 'password_fields', :f => f %>
     <% end %>
-    <div class="field">
-        <%= f.label :roles %> <br/>
-        <% for role in User::ROLES %>
-            <%= check_box_tag "user[roles][]", role, @user.roles.include?(role), :id => "#{role}_check" %>
-            <%= label_tag nil, role.humanize, :for => "#{role}_check" %> <br />
-        <% end %>
-        <%= hidden_field_tag "user[roles][]", "" %>
-    </div>
+    <% if can? :assign_roles, @user %>
+        <div class="field">
+          <%= f.label :roles %> <br/>
+          <% for role in User::ROLES %>
+              <%= check_box_tag "user[roles][]", role, @user.roles.include?(role), :id => "#{role}_check" %>
+              <%= label_tag nil, role.humanize, :for => "#{role}_check" %> <br/>
+          <% end %>
+          <%= hidden_field_tag "user[roles][]", "" %>
+        </div>
+    <% end %>
     <div class="actions"><%= f.submit %></div>
 <% end %>

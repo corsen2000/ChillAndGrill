@@ -10,6 +10,9 @@ body {
     > div {
         padding: 0 5px;
     }
+    > #flash {
+        padding: 0;
+    }
     #header {
         height: 30px;
         line-height: 30px;
@@ -20,5 +23,19 @@ body {
     }
     #content {
         background-color: white;
+    }
+}
+#flash {
+    font-weight: bold;
+    > div {
+        padding: 0 5px;
+    }
+    #flash_error {
+        border: 1px solid red;
+        background-color: pink;
+    }
+    #flash_notice {
+        border: 1px solid green;
+        background-color: lightgreen;
     }
 }
