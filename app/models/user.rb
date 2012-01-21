@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  has_many :registrations
+  has_many :events, :through => :registrations
+
   attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, :current_password, :roles
   attr_accessor :current_password
 
