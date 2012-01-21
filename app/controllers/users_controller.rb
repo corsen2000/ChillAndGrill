@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    authorize! :assign_roles, @user if params[:user][:roles]
     if @user.save
       redirect_to @user, notice: 'User was successfully created.'
     else
