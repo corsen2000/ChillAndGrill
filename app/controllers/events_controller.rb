@@ -5,6 +5,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @registration = @event.registrations.where(:user_id => current_user)[0]
   end
 
   def new

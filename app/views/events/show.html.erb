@@ -13,6 +13,29 @@
   <%= format_date_time @event.start %>
 </p>
 
+<!-- List the users for this event -->
+<h2>Attending This Event</h2>
+<div class="users_list">
+  <% @event.users.sort.each do |user| %>
+    <div class="user">
+      <%= user.first_name %>
+    </div>
+  <% end %>
+</div>
+
+<% if @registration %>
+    <!-- Add a form to unregister for this event -->
+    <div class="un_registration">
+        <%= link_to 'Un-Register', [@event, @registration], confirm: 'Are you sure?', method: :delete %>
+    </div>
+<% else %>
+    <!-- Add a form to register for this event -->
+    <%= form_for([@event, @event.registrations.build]) do |f| %>
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+    <% end %>
+<% end %>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

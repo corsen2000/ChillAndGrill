@@ -1,6 +1,9 @@
 ChillAndGrill::Application.routes.draw do
   root :to => 'pages#home'
-  resources :users, :events, :registrations
+  resources :users
+  resources :events do
+    resources :registrations, :only => [:create, :destroy]
+  end
   resource :session, :controller => "session", :only => [:new, :create, :destroy]
 
   # The priority is based upon order of creation:

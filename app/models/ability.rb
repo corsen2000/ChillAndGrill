@@ -16,6 +16,8 @@ class Ability
        can :read, :all
        can :create, User
        can :update, User, :id => user.id
+       can :create, Registration, :user_id => user.id
+       can :destroy, Registration, :user_id => user.id
      end
   end
 end
