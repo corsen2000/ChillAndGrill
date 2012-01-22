@@ -16,8 +16,12 @@
     <td><%= event.description %></td>
     <td><%= format_date_time event.start %></td>
     <td><%= link_to 'Show', event %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
+    <% if can? :update, event %>
+        <td><%= link_to 'Edit', edit_event_path(event) %></td>
+    <% end %>
+    <% if can? :destroy, event %>
+        <td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
