@@ -16,7 +16,7 @@
 <!-- List the users for this event -->
 <h2>Attending This Event</h2>
 <div class="users_list">
-  <% @event.users.sort.each do |user| %>
+  <% @event.users.sort_by {|u| u.first_name}.each do |user| %>
     <div class="user">
       <%= user.first_name %>
     </div>
