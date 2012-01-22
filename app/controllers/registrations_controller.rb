@@ -19,9 +19,9 @@ class RegistrationsController < ApplicationController
     @registration = @event.registrations.find(params[:id])
     @registration.destroy
     if request.referer == events_url
-      redirect_to events_path, notice: 'Un-Registered'
+      redirect_to events_path, alert: 'Un-Registered'
     else
-      redirect_to event_path(@event), notice: 'Un-Registered'
+      redirect_to event_path(@event), alert: 'Un-Registered'
     end
   end
 end
