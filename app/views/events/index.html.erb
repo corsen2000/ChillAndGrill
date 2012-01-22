@@ -16,6 +16,11 @@
     <td><%= event.description %></td>
     <td><%= format_date_time event.start %></td>
     <td><%= link_to 'Show', event %></td>
+    <% if registered? event %>
+        <td><%= link_to 'Un-Register', [event, get_registration(event)], confirm: 'Are you sure?', method: :delete %></td>
+    <% else %>
+        <td><%= link_to 'Register', [event, event.registrations.build], :method => :post %></td>
+    <% end %>
     <% if can? :update, event %>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
     <% end %>

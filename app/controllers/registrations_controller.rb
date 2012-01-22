@@ -4,7 +4,11 @@ class RegistrationsController < ApplicationController
     @event = Event.find(params[:event_id])
     @registration = @event.registrations.build(:user => current_user)
     if @registration.save
-      redirect_to event_path(@event), notice: 'Registration successfull.'
+      if request.referer == events_url
+        redirect_to events_path
+      else
+        redirect_to event_path(@event), notice: 'Registration successfull.'
+      end
     else
       redirect_to events_path
     end
@@ -14,6 +18,10 @@ class RegistrationsController < ApplicationController
     @event = Event.find(params[:event_id])
     @registration = @event.registrations.find(params[:id])
     @registration.destroy
-    redirect_to event_path(@event), notice: 'Un-Registered'
+    if request.referer == events_url
+      redirect_to events_path
+    else
+      redirect_to event_path(@event), notice: 'Un-Registered'
+    end
   end
 end
