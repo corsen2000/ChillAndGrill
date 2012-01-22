@@ -5,7 +5,7 @@ class RegistrationsController < ApplicationController
     @registration = @event.registrations.build(:user => current_user)
     if @registration.save
       if request.referer == events_url
-        redirect_to events_path
+        redirect_to events_path, notice: 'Registration successful.'
       else
         redirect_to event_path(@event), notice: 'Registration successfull.'
       end
@@ -19,7 +19,7 @@ class RegistrationsController < ApplicationController
     @registration = @event.registrations.find(params[:id])
     @registration.destroy
     if request.referer == events_url
-      redirect_to events_path
+      redirect_to events_path, notice: 'Un-Registered'
     else
       redirect_to event_path(@event), notice: 'Un-Registered'
     end
