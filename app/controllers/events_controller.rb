@@ -1,7 +1,12 @@
 class EventsController < ApplicationController
   load_and_authorize_resource
+  skip_load_resource :only => :index
   
   def index
+    #Event.includes(:registrations)
+    @todays_events = Event.todays
+    @future_events = Event.future
+    @past_events = Event.past
   end
 
   def show

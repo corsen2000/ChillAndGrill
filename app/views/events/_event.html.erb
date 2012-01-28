@@ -1,0 +1,19 @@
+<% allow_registration ||= false %>
+<div>
+    <h2>
+        <span><%= event.title %></span>
+        <span><%= format_date_time event.start %></span>
+        <% if allow_registration %>
+            <%= get_registration_link event %>
+        <% end %>        
+    </h2>
+    <%= link_to 'Details', event %>
+    <p><%= event.description %></p>
+
+    <% if can? :update, event %>
+        <div><%= link_to 'Edit', edit_event_path(event) %></div>
+    <% end %>
+    <% if can? :destroy, event %>
+        <div><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></div>
+    <% end %>
+</div>
