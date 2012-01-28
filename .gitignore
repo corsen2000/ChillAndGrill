@@ -14,3 +14,7 @@
 /log/*.log
 /tmp
 /.idea/*
+
+# Ignore Sublime Files
+Chill\ And\ Grill.sublime-project
+Chill\ And\ Grill.sublime-workspace
