@@ -1,0 +1,6 @@
+<% if can? :update, event %>
+    <div><%= link_to 'Edit', edit_event_path(event) %></div>
+<% end %>
+<% if can? :destroy, event %>
+    <div><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></div>
+<% end %>

@@ -10,10 +10,5 @@
     <%= link_to 'Details', event %>
     <p><%= event.description %></p>
 
-    <% if can? :update, event %>
-        <div><%= link_to 'Edit', edit_event_path(event) %></div>
-    <% end %>
-    <% if can? :destroy, event %>
-        <div><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></div>
-    <% end %>
+    <%= render :partial => "control_panel", :locals => {:event => event} %>
 </div>
