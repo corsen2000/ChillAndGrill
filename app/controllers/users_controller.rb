@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   def create
     authorize! :assign_roles, @user if params[:user][:roles]
     if @user.save
+      UserMailer.welcome_email(@user, new_session_url).deliver
       redirect_to @user, notice: 'User was successfully created.'
     else
       render action: "new"

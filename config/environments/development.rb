@@ -14,7 +14,7 @@ ChillAndGrill::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = false  
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -34,4 +34,13 @@ ChillAndGrill::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+  # Email settings
+  config.action_mailer.delivery_method = :test
+  config.action_mailer.smtp_settings = {
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :user_name            => ENV["CGMAILER_ACCOUNT"],
+  :password             => ENV["CGMAILER_PASSWORD"],
+  :enable_starttls_auto => true  }
 end

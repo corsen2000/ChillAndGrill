@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Welcome to ChillAndGrill.info, <%= @user.full_name %></h1>
+    <p style="margin: 1em 0;">
+      You have successfully signed up to chillandgrill.info,
+      your email is: <%= @user.email %>.<br/>
+      <span style="color: red; font-weight: bold;">An email has been sent to the site admin.  Your access to the site will be limited until you are approved.</span> 
+    </p>
+    <p style="margin: 1em 0;">
+      To login to the site, just follow this link: <%= @url %>.
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>
