@@ -8,16 +8,19 @@ class Ability
        can :manage, :all
        can :assign_roles, User
      else
-       # Moderator
-       if user.role? :moderator
-         can :manage, Event
-       end
-       # Other
-       can :read, :all
-       can :create, User
-       can :update, User, :id => user.id
-       can :create, Registration, :user_id => user.id
-       can :destroy, Registration, :user_id => user.id
+        # Moderator
+        if user.role? :moderator
+          can :manage, Event
+        end
+        # Guest
+        if user.role? :guest
+          can :read, :all
+          can :create, Registration, :user_id => user.id
+          can :destroy, Registration, :user_id => user.id
+        end
+        # Other
+        can :create, User
+        can :update, User, :id => user.id
      end
   end
 end
