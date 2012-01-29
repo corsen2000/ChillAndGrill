@@ -1,9 +1,24 @@
 <% if signed_in? %>
     <h1>Welcome <%= current_user.first_name %></h1>
-    <h2>Upcoming Events</h2>
 <% else %>
     <h1>Welcome to Chill And Grill</h1>
-    <p>
-      Chill And Grill is the best place to find grilling events hosted by Bryan and Shannon.
-    </p>
+<% end %>
+<p>
+	Chill And Grill is the best place to find grilling events hosted by Bryan and Shannon.  
+</p>
+
+<% if not signed_in? %>
+	<p>
+		Please sign in if you have an account, or register.
+	</p>
+<% elsif can? :read, Event %>
+	<p>
+		You are a verified guest of Chill And Grill.  To see upcoming events, please click on the events link in the toolbar.
+	</p>	
+<% else %>
+	<p>
+		For privacy reason we restrict access to users who have not been verified by a site admin. <br>
+		If you have recently signed up, an admin will be reviewing your account shortly. <br>
+		If your account has not been verified in a reasonable amount of time, please contact the admin directly.
+	</p>
 <% end %>
