@@ -2,7 +2,7 @@
 	<%= render 'shared/error_messages', :object => f.object %>
 	<div class="field">
 		<%= f.label :status %>
-		<%= f.select :status, [['Yes', 1], ['No', 2], ['Maybe', 3]] %>
+		<%= f.select :status, [['Yes', 'Yes'], ['No', 'No'], ['Maybe', 'Maybe']] %>
 	</div>
 	<div class="field">
 		<%= f.label :comment %> <br>

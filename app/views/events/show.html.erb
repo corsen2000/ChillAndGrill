@@ -19,6 +19,7 @@
     <div class="attending_user">
       <%= user.first_name %>
       <%= get_view_rsvp_link(user, @event) %>
+      <%= @event.rsvp_for_user(user).status %>
     </div>
   <% end %>
 </div>
