@@ -1,10 +1,10 @@
-<% allow_registration ||= false %>
+<% allow_rsvp ||= false %>
 <div>
     <h2>
         <span><%= event.title %></span>
         <span><%= format_date_time event.start %></span>
-        <% if allow_registration %>
-            <%= get_registration_link event %>
+        <% if allow_rsvp %>
+            <%= get_rsvp_link event %>
         <% end %>        
     </h2>
     <%= link_to 'Details', event %>

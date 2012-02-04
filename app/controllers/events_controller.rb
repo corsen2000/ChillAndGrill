@@ -3,14 +3,14 @@ class EventsController < ApplicationController
   skip_load_resource :only => :index
   
   def index
-    #Event.includes(:registrations)
+    #Event.includes(:rsvps)
     @todays_events = Event.todays
     @future_events = Event.future
     @past_events = Event.past
   end
 
   def show
-    @registration = @event.registrations.where(:user_id => current_user)[0]
+    @rsvp = @event.rsvps.where(:user_id => current_user)[0]
   end
 
   def new

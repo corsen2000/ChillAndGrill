@@ -15,8 +15,8 @@ class Ability
         # Guest
         if user.role? :guest
           can :read, :all
-          can :create, Registration, :user_id => user.id
-          can :destroy, Registration, :user_id => user.id
+          can :create, Rsvp, :user_id => user.id
+          can :destroy, Rsvp, :user_id => user.id
         end
         # Other
         can :create, User

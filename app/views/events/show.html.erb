@@ -23,14 +23,14 @@
   <% end %>
 </div>
 
-<% if @registration %>
+<% if @rsvp %>
     <!-- Add a form to unregister for this event -->
-    <div class="un_registration">
-        <%= link_to 'Un-Register', [@event, @registration], confirm: 'Are you sure?', method: :delete %>
+    <div class="un_rsvp">
+        <%= link_to 'Un-Register', [@event, @rsvp], confirm: 'Are you sure?', method: :delete %>
     </div>
 <% else %>
     <!-- Add a form to register for this event -->
-    <%= form_for([@event, @event.registrations.build]) do |f| %>
+    <%= form_for([@event, @event.rsvps.build]) do |f| %>
         <div class="actions">
           <%= f.submit %>
         </div>

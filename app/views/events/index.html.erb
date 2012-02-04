@@ -7,7 +7,7 @@
 
 <h1>Upcoming Events</h1>
 <% if @future_events.any? %>
-    <%= render :partial => "event", :collection => @future_events, :locals => {:allow_registration => true} %>
+    <%= render :partial => "event", :collection => @future_events, :locals => {:allow_rsvp => true} %>
 <% else %>
     <span>There are no upcoming events...</span>
 <% end %>
