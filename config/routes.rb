@@ -2,7 +2,7 @@ ChillAndGrill::Application.routes.draw do
   root :to => 'pages#home'
   resources :users
   resources :events do
-    resources :rsvps, :only => [:create, :destroy]
+    resources :rsvps, :only => [:show, :new, :create, :edit, :update]
   end
   resource :session, :controller => "session", :only => [:new, :create, :destroy]
 

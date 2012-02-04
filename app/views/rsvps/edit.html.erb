@@ -1,0 +1,5 @@
+<h1>Edit Your RSVP For This Event</h1>
+
+<%= render :partial => 'form', :locals => {:event => @event, :rsvp => @rsvp} %>
+
+<%= link_to 'back', event_path(@event) %>

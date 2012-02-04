@@ -1,0 +1,11 @@
+<div>
+	<b>Status:</b>
+	<%= @rsvp.status %>
+</div>
+
+<div>
+	<b>Comment:</b>
+	<p><%= @rsvp.comment %></p>
+</div>
+
+<%= link_to 'Back', event_path(@rsvp.event_id) %>
