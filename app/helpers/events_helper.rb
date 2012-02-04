@@ -27,4 +27,10 @@ module EventsHelper
       link_to 'View RSVP', event_rsvp_path(event, rsvp)
     end
   end
+
+  def user_has_rsvp(event)
+    event.rsvps.any? do |r|
+      r.user_id == current_user.id
+    end
+  end
 end
