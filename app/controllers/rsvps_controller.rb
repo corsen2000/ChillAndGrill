@@ -15,6 +15,7 @@ class RsvpsController < ApplicationController
     @title = "Edit RSVP"
     @event = Event.find(params[:event_id])
     @rsvp = Rsvp.find(params[:id])
+    session[:rsvp_edit_referer] = request.referer
   end
 
   def create
@@ -35,7 +36,7 @@ class RsvpsController < ApplicationController
   def update
     @rsvp = Rsvp.find(params[:id])
     if @rsvp.update_attributes(params[:rsvp])
-      redirect_to events_path, notice: 'RSVP was successfully updated.'
+      redirect_to session[:rsvp_edit_referer], notice: 'RSVP was successfully updated.'
     else
       redirect_to root_path, alert: 'Something went wrong...'
     end
