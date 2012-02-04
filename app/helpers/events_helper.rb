@@ -5,7 +5,8 @@ module EventsHelper
 
   def get_rsvp_link(event)
     if registered? event
-      link_to 'Edit RSVP', edit_event_rsvp_path(event, get_rsvp(event))
+      rsvp = get_rsvp(event)      
+      link_to "Edit RSVP (#{rsvp.status})", edit_event_rsvp_path(event, rsvp)
     else
       link_to 'RSVP', new_event_rsvp_path(event)
     end
