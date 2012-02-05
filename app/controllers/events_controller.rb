@@ -3,10 +3,9 @@ class EventsController < ApplicationController
   skip_load_resource :only => :index
   
   def index
-    #Event.includes(:rsvps)
-    @todays_events = Event.todays
-    @future_events = Event.future
-    @past_events = Event.past
+    @todays_events = Event.todays.select {|event| can?(:read, event)}
+    @future_events = Event.future.select {|event| can?(:read, event)}
+    @past_events = Event.past.select {|event| can?(:read, event)}
   end
 
   def show

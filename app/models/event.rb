@@ -12,4 +12,12 @@ class Event < ActiveRecord::Base
   def rsvp_for_user(user)
     rsvps.where(:user_id => user).first
   end
+
+  def can_come?(user)
+    if self.private
+      invited_users.any? {|u| u == user}
+    else
+      true
+    end    
+  end
 end

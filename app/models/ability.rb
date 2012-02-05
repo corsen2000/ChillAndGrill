@@ -15,7 +15,11 @@ class Ability
         # Guest
         if user.role? :guest
           can :read, :all
+          cannot :read, Event
           can :manage, Rsvp, :user_id => user.id
+          can :read, Event do |event|            
+            event.can_come? user
+          end
         end
         # Other
         can :create, User
