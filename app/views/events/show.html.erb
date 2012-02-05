@@ -13,7 +13,7 @@
   <%= format_date_time @event.start %>
 </p>
 
-<% if can? :send_invitations, Event %>
+<% if can?(:send_invitations, Event) && @event.unsent_invitations? %>
   <div>
     <%= link_to 'Send Invitations', send_invitations_event_path(@event), :method => :post %>
   </div>

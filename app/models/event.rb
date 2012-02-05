@@ -20,4 +20,8 @@ class Event < ActiveRecord::Base
       true
     end    
   end
+
+  def unsent_invitations?
+    invitations.where(:sent => false).exists?
+  end
 end

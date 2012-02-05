@@ -43,10 +43,12 @@ class EventsController < ApplicationController
   def send_invitations    
     event = Event.find(params[:id])
     authorize! :send_invitations, event
-    invitations = event.invitations
+    invitations = event.invitations.where(:sent => false)
     invitations.each do |inv|
       UserMailer.invitation_email(inv.user, event).deliver
-    end 
+      inv.update_attribute(:sent, true)
+    end
+    flash[:notice] = "We sent #{invitations.length} emails!"    
     redirect_to event_path(event)
   end
 end
