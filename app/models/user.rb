@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
-  has_many :rsvps
+  has_many :rsvps  
   has_many :events, :through => :rsvps
+  has_many :invitations
+  has_many :invited_events, :through => :invitations, :class_name => 'Event'
 
   attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, :current_password, :roles
   attr_accessor :current_password

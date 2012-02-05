@@ -1,3 +1,4 @@
+<% @event.invitations.build %>
 <%= form_for(@event) do |f| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
@@ -15,10 +16,23 @@
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
-  <div class="field">
-    <%= f.label :private %><br>
+
+  <div class="field">    
     <%= f.check_box :private %>
+    <%= f.label :private %>
   </div>
+
+  <br>
+
+  <%= f.fields_for :invitations do |inv_form| %>
+    <div class="field">
+        <%= inv_form.label :users %><br>
+        <%= inv_form.collection_select :user_id, User.all, :id, :first_name %>
+        Delete: <%= inv_form.check_box :_destroy %>
+    </div>
+  <% end %>
+  
+
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_area :description %>
