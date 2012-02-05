@@ -28,6 +28,7 @@ class EventsController < ApplicationController
   end
 
   def update
+    params[:event][:invited_user_ids] ||= []
     if @event.update_attributes(params[:event])
       redirect_to @event, notice: 'Event was successfully updated.'
     else

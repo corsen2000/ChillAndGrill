@@ -1,4 +1,3 @@
-<% @event.invitations.build %>
 <%= form_for(@event) do |f| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
@@ -24,14 +23,12 @@
 
   <br>
 
-  <%= f.fields_for :invitations do |inv_form| %>
+  <% User.all.each do |user| %>
     <div class="field">
-        <%= inv_form.label :users %><br>
-        <%= inv_form.collection_select :user_id, User.all, :id, :first_name %>
-        Delete: <%= inv_form.check_box :_destroy %>
+      <%= check_box_tag :invited_user_ids, user.id, @event.invitations.any? {|inv| inv.user_id == user.id}, :name => 'event[invited_user_ids][]', :id => "inv_box_#{user.id}" %>
+      <%= label_tag :invited_user_ids, user.first_name, {:for => "inv_box_#{user.id}"} -%>
     </div>
-  <% end %>
-  
+  <% end %>  
 
   <div class="field">
     <%= f.label :description %><br />
