@@ -40,8 +40,9 @@ class EventsController < ApplicationController
     redirect_to events_url
   end
 
-  def send_invitations
+  def send_invitations    
     event = Event.find(params[:id])
+    authorize! :send_invitations, event
     invitations = event.invitations
     invitations.each do |inv|
       UserMailer.invitation_email(inv.user, event).deliver

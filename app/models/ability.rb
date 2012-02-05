@@ -7,10 +7,12 @@ class Ability
      if user.role? :admin
        can :manage, :all
        can :assign_roles, User
+       can :send_invitations, Event
      else
-        # Moderator
+        # Moderator        
         if user.role? :moderator
           can :manage, Event
+          can :send_invitations, Event
         end
         # Guest
         if user.role? :guest

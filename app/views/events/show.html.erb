@@ -13,9 +13,11 @@
   <%= format_date_time @event.start %>
 </p>
 
-<div>
-  <%= link_to 'Send Invitations', send_invitations_event_path(@event), :method => :post %>
-</div>
+<% if can? :send_invitations, Event %>
+  <div>
+    <%= link_to 'Send Invitations', send_invitations_event_path(@event), :method => :post %>
+  </div>
+<% end %>
 
 <% unless user_has_rsvp(@event) %>
   <div>
