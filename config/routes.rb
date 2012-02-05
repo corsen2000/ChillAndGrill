@@ -3,6 +3,7 @@ ChillAndGrill::Application.routes.draw do
   resources :users
   resources :events do
     resources :rsvps, :only => [:show, :new, :create, :edit, :update]
+    post 'send_invitations', :on => :member
   end
   resource :session, :controller => "session", :only => [:new, :create, :destroy]
 

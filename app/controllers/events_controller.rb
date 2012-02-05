@@ -39,4 +39,13 @@ class EventsController < ApplicationController
     @event.destroy
     redirect_to events_url
   end
+
+  def send_invitations
+    event = Event.find(params[:id])
+    invitations = event.invitations
+    invitations.each do |inv|
+      UserMailer.invitation_email(inv.user, event).deliver
+    end 
+    redirect_to event_path(event)
+  end
 end
