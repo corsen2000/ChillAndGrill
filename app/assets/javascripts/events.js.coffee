@@ -2,8 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->
-  if $("#event_private")[0].checked
-  	toggle_user_selection()
+  toggle_user_selection()
   $('#event_private').bind 'click', toggle_user_selection
 
 toggle_user_selection = ->
