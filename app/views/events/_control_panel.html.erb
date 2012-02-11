@@ -1,6 +1,10 @@
-<% if can? :update, event %>
-    <div><%= link_to 'Edit', edit_event_path(event) %></div>
-<% end %>
-<% if can? :destroy, event %>
-    <div><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></div>
+<% if can?(:update, event) || can?(:destroy, event) %>
+	<div class="admin_panel">
+		<% if can? :update, event %>
+		    <%= link_to 'Edit', edit_event_path(event) %>
+		<% end %>
+		<% if can? :destroy, event %>
+		    <%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %>
+		<% end %>
+	</div>
 <% end %>

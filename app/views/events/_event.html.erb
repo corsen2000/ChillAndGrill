@@ -3,10 +3,10 @@
     <h2>
         <span><%= event.title %></span>
         <span><%= format_date_time event.start %></span>
-        <% if allow_rsvp %>
-            <%= get_rsvp_link event %>
-        <% end %>        
     </h2>
+    <% if allow_rsvp %>
+        <%= get_rsvp_link event %>
+    <% end %>        
     <%= link_to 'Details', event %>
     <p><%= event.description %></p>
 
