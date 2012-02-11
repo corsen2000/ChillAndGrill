@@ -51,13 +51,16 @@ h2 {
     #flash_error {
         border: 1px solid red;
         background-color: pink;
+        color: red;
     }
     #flash_alert {
         border: 1px solid gold;
         background-color: yellow;
+        color: red;
     }
     #flash_notice {
         border: 1px solid green;
         background-color: lightgreen;
+        color: blue;
     }
 }
