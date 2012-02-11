@@ -1,23 +1,25 @@
+<h2>
+	<% if @user == current_user %>
+		You're Information
+	<% else %>
+		User Information
+	<% end %>
+</h2>
+
 <p>
-  <b>Email:</b>
+  <label>Email:</label>
   <%= @user.email %>
 </p>
 
 <p>
-  <b>Password digest:</b>
-  <%= @user.password_digest %>
-</p>
-
-<p>
-  <b>First name:</b>
+  <label>First name:</label>
   <%= @user.first_name %>
 </p>
 
 <p>
-  <b>Last name:</b>
+  <label>Last name:</label>
   <%= @user.last_name %>
 </p>
-
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
