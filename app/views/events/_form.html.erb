@@ -21,7 +21,7 @@
     <%= f.label :private, {:class => "checkbox_label"} %>
   </div>
 
-  <div class="field_group">
+  <div id="user_selection_container" class="field_group hidden">
     <label>Invited Users</label>
     <% User.all.each do |user| %>
       <div class="field">
