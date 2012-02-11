@@ -22,10 +22,10 @@
     <% end %>
     <% if can? :assign_roles, @user %>
         <div class="field">
-          <%= f.label :roles %> <br/>
+          <%= f.label :roles %>
           <% for role in User::ROLES %>
               <%= check_box_tag "user[roles][]", role, @user.roles.include?(role), :id => "#{role}_check" %>
-              <%= label_tag nil, role.humanize, :for => "#{role}_check" %> <br/>
+              <%= label_tag nil, role.humanize, {:for => "#{role}_check", :class => "checkbox_label"} %> <br/>
           <% end %>
           <%= hidden_field_tag "user[roles][]", "" %>
         </div>

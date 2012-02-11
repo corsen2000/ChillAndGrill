@@ -12,30 +12,31 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
 
   <div class="field">    
     <%= f.check_box :private %>
-    <%= f.label :private %>
+    <%= f.label :private, {:class => "checkbox_label"} %>
   </div>
 
-  <br>
-
-  <% User.all.each do |user| %>
-    <div class="field">
-      <%= check_box_tag :invited_user_ids, user.id, @event.invitations.any? {|inv| inv.user_id == user.id}, :name => 'event[invited_user_ids][]', :id => "inv_box_#{user.id}" %>
-      <%= label_tag :invited_user_ids, user.first_name, {:for => "inv_box_#{user.id}"} -%>
-    </div>
-  <% end %>  
+  <div class="field_group">
+    <label>Invited Users</label>
+    <% User.all.each do |user| %>
+      <div class="field">
+        <%= check_box_tag :invited_user_ids, user.id, @event.invitations.any? {|inv| inv.user_id == user.id}, :name => 'event[invited_user_ids][]', :id => "inv_box_#{user.id}" %>
+        <%= label_tag :invited_user_ids, user.first_name, {:for => "inv_box_#{user.id}", :class => "checkbox_label"} -%>
+      </div>
+    <% end %>
+  </div>
 
   <div class="field">
-    <%= f.label :description %><br />
+    <%= f.label :description %>
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= f.label :start %><br />
+    <%= f.label :start %>
     <%= f.datetime_select :start, :ampm => true %>
   </div>
   <div class="actions">

@@ -2,7 +2,7 @@ body {
     padding: 0;
     margin: 0;
     font-size: 16px;
-    background-color: black;
+    background-color: #0F0F0F;
     color: white;
     font-family: Verdana, Helvetica, Arial;
 }
@@ -12,6 +12,23 @@ a, a:visited {
 
 h2 {
     color: #9FD3E4;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+.field {
+    margin: 10px 0;
+    label.checkbox_label {
+        display: inline;
+    }
+}
+.field_group {
+    .field {
+        margin: 0;
+    }
 }
 
 #container {
