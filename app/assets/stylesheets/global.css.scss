@@ -31,6 +31,12 @@ label {
     }
 }
 
+#error_explanation {
+    h2 {
+        color: yellow;
+    }
+}
+
 #container {
     width: 1080px;
     margin: 0 auto;
