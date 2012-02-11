@@ -40,15 +40,15 @@ class EventsController < ApplicationController
     redirect_to events_url
   end
 
-  def send_invitations    
+  def send_invitations        
     event = Event.find(params[:id])
     authorize! :send_invitations, event
-    invitations = event.invitations.where(:sent => false)
-    invitations.each do |inv|
-      UserMailer.invitation_email(inv.user, event).deliver
-      inv.update_attribute(:sent, true)
+    count = event.notify_users
+    if count > 0
+      flash[:notice] = "We sent #{count} notifications!"
+    else
+      flash[:notice] = "There were no users to notify..."
     end
-    flash[:notice] = "We sent #{invitations.length} emails!"    
     redirect_to event_path(event)
   end
 end

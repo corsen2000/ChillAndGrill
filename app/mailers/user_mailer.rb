@@ -5,9 +5,11 @@ class UserMailer < ActionMailer::Base
     @url = login_url
     mail(:to => user.email, :subject => "Welcome to Chill And Grill", :cc => ENV["CGMAILER_CC"])
   end
-  def invitation_email(user, event)
+  def invitation_email(user, event, new_invitation = true)
     @user = user
     @event = event
-    mail(:to => user.email, :subject => "Event Invitation", :cc => ENV["CGMAILER_CC"])
+    subject = "Event Invitation"
+    subject += " (Update!)" unless new_invitation
+    mail(:to => user.email, :subject => subject, :cc => ENV["CGMAILER_CC"])
   end
 end

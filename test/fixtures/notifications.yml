@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 
+  event_id: 
+  sent_for_event_version: 2012-02-11 08:27:54
+
+two:
+  user_id: 
+  event_id: 
+  sent_for_event_version: 2012-02-11 08:27:54
