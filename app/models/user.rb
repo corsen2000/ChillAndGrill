@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  ROLES = %w[admin moderator guest]
+
   has_many :rsvps  
   has_many :events, :through => :rsvps
   has_many :invitations
@@ -14,9 +16,7 @@ class User < ActiveRecord::Base
   validates :email, :email => true, :uniqueness => true
   validate :confirm_current_password, :on => :update, :if => :changing_password
 
-  scope :with_role, lambda { |role| where("roles_mask & #{2**ROLES.index(role.to_s)} > 0")}
-
-  ROLES = %w[admin moderator guest]
+  scope :with_role, lambda { |role| where("roles_mask & #{2**ROLES.index(role.to_s)} > 0")}    
 
   def self.authenticate(user_id)
     User.find(user_id)
