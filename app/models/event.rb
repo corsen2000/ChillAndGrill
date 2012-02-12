@@ -28,7 +28,7 @@ class Event < ActiveRecord::Base
     if is_private?
       invited_users = invitations.pluck(:user_id)
     else
-      invited_users = User.pluck(:id)
+      invited_users = User.approved.pluck(:id)
     end
     invited_users - notified_users    
   end

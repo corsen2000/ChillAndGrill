@@ -16,7 +16,8 @@ class User < ActiveRecord::Base
   validates :email, :email => true, :uniqueness => true
   validate :confirm_current_password, :on => :update, :if => :changing_password
 
-  scope :with_role, lambda { |role| where("roles_mask & #{2**ROLES.index(role.to_s)} > 0")}    
+  scope :with_role, lambda { |role| where("roles_mask & #{2**ROLES.index(role.to_s)} > 0")}
+  scope :approved, with_role("guest")
 
   def self.authenticate(user_id)
     User.find(user_id)
