@@ -38,4 +38,9 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def approve
+    User.find(params[:id]).approve
+    redirect_to users_path
+  end
+
 end

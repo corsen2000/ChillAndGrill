@@ -12,4 +12,8 @@ class UserMailer < ActionMailer::Base
     subject += " (Update!)" unless new_invitation
     mail(:to => user.email, :subject => subject, :cc => ENV["CGMAILER_CC"])
   end
+  def approval_email(user)    
+    @user = user
+    mail(:to => user.email, :subject => "Registration Approved At Chill And Grill", :cc => ENV["CGMAILER_CC"])
+  end
 end

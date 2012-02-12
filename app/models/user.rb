@@ -51,4 +51,15 @@ class User < ActiveRecord::Base
     [first_name, last_name].join " "
   end
 
+  def approved?    
+    role?("guest")
+  end
+
+  def approve
+    unless role?("guest")
+      update_attribute(:roles, roles << "guest")
+      UserMailer.approval_email(self).deliver
+    end
+  end
+
 end
