@@ -15,6 +15,10 @@
   </span>
   <% end %>
 
+  <% if can? :edit, Event %>
+  <%= link_to 'Edit', edit_event_path(@event) %>
+  <% end %>
+
   <% unless user_has_rsvp(@event) %>
   <span>
     <%= link_to 'RSVP', new_event_rsvp_path(@event) %>
@@ -36,7 +40,3 @@
 <div class="users_list">
   <%= render :partial => 'rsvp', :collection => @event.rsvps.no %>
 </div>
-
-<% if can? :edit, Event %>
-  <%= link_to 'Edit', edit_event_path(@event) %>
-<% end %>
