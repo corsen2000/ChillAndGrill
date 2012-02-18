@@ -1,6 +1,10 @@
 module EventsHelper
-  def format_date_time(date_time)
-    date_time.strftime("%m/%d/%Y at %I:%M%p")
+  def format_date_time(date_time, sentence = false)
+    if sentence
+      "Starts at #{date_time.strftime("%I:%M%p")} on #{date_time.strftime("%m/%d/%Y")}"
+    else
+      date_time.strftime("%m/%d/%Y at %I:%M%p")
+    end    
   end
 
   def get_rsvp_link(event)
