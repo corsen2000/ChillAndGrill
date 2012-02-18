@@ -40,5 +40,6 @@
   <%= render :partial => 'rsvp', :collection => @event.rsvps.no %>
 </div>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<% if can? :edit, Event %>
+  <%= link_to 'Edit', edit_event_path(@event) %>
+<% end %>
