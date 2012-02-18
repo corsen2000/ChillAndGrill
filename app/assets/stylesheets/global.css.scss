@@ -33,6 +33,7 @@ th {
         display: inline;
     }
 }
+
 .field_group {
     .field {
         margin: 0;
@@ -43,6 +44,10 @@ th {
     h2 {
         color: yellow;
     }
+}
+
+.field_with_errors {
+    display: inline;
 }
 
 #container {

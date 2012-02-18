@@ -1,10 +1,12 @@
-class Event < ActiveRecord::Base
-  validates_presence_of :title, :description, :start
+class Event < ActiveRecord::Base  
   has_many :rsvps  
   has_many :users, :through => :rsvps
   has_many :invitations
   has_many :notifications
   has_many :invited_users, :through => :invitations, :source => :user
+
+  validates_presence_of :title, :description, :start
+  validate :event_cannot_be_made_private_after_invitations_sent, :on => :update
 
   scope :todays, lambda { where(:start => DateTime.now.beginning_of_day..DateTime.now.end_of_day).order("start") }
   scope :past, lambda { where("start < ?", DateTime.now.beginning_of_day).order("start DESC") }
@@ -50,5 +52,13 @@ class Event < ActiveRecord::Base
       end
     end
     users_to_notify.length
+  end
+
+  def event_cannot_be_made_private_after_invitations_sent
+    if is_private?
+      unless notifications.empty?
+        errors.add(:private, "can't be selected after public invitations have been sent")
+      end
+    end
   end
 end
