@@ -8,6 +8,7 @@ ChillAndGrill::Application.routes.draw do
     post 'send_invitations', :on => :member
   end
   resource :session, :controller => "session", :only => [:new, :create, :destroy]
+  match 'about' => "pages#about"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

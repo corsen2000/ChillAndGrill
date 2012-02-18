@@ -73,6 +73,14 @@ th {
     #content {
         
     }
+    #footer {
+        font-size: 12px;
+        text-align: right;
+        margin-top: 20px;
+        a, a:visited {
+            color: #666;
+        }
+    }
 }
 #flash {
     font-weight: bold;
