@@ -29,7 +29,7 @@ class RsvpsController < ApplicationController
         redirect_to event_path(@event), notice: 'rsvp successfull.'
       end
     else
-      redirect_to events_path
+      redirect_to events_path, alert: "Unable to rsvp for this event"
     end
   end
 
