@@ -89,22 +89,16 @@ th {
 }
 #flash {
     font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+    color: black;
     > div {
         padding: 0 5px;
     }
     #flash_error {
-        border: 1px solid red;
-        background-color: pink;
-        color: red;
-    }
-    #flash_alert {
-        border: 1px solid gold;
-        background-color: yellow;
-        color: red;
+        background-color: #FF6666;
     }
     #flash_notice {
-        border: 1px solid green;
-        background-color: lightgreen;
-        color: blue;
+        background-color: yellow;        
     }
 }

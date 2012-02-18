@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   def update
     authorize! :assign_roles, @user if params[:user][:roles]
     if @user.update_attributes(params[:user])
-      redirect_to @user, notice: 'User was successfully updated.'
+      redirect_to @user
     else
       render action: "edit"
     end
