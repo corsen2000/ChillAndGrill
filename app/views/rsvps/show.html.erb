@@ -1,11 +1,12 @@
-<div>
-	<b>Status:</b>
-	<%= @rsvp.status %>
-</div>
+<h2>RSVP For <%= @rsvp.user.first_name %></h2>
 
-<div>
-	<b>Comment:</b>
-	<p><%= @rsvp.comment %></p>
+<div class="rsvp">
+	<div class="field">
+		<span class="label">Status:</span>
+		<%= @rsvp.status %>
+	</div>
+	<div class="field">
+		<span class="label">Comment:</span>
+		<p><%= @rsvp.comment %></p>
+	</div>
 </div>
-
-<%= link_to 'Back', event_path(@rsvp.event_id) %>
