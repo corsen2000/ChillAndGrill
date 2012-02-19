@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
     User.find(user_id)
   end
 
+  def self.roles_from_mask(mask)
+    ROLES.reject { |r| ((mask || 0) & 2**ROLES.index(r)).zero? }
+  end
+
   def confirm_current_password
     if User.find(self).try(:authenticate, @current_password)
       true
@@ -41,11 +45,19 @@ class User < ActiveRecord::Base
   end
 
   def roles
-    ROLES.reject { |r| ((roles_mask || 0) & 2**ROLES.index(r)).zero? }
+    User.roles_from_mask roles_mask
+  end
+
+  def roles_was
+    User.roles_from_mask roles_mask_was
   end
 
   def role?(role)
     roles.include?(role.to_s)
+  end
+
+  def role_had?(role)
+    roles_was.include?(role.to_s)
   end
 
   def full_name
@@ -59,7 +71,6 @@ class User < ActiveRecord::Base
   def approve
     unless role?("guest")
       update_attribute(:roles, roles << "guest")
-      UserMailer.approval_email(self).deliver
     end
   end
 
