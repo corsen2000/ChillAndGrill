@@ -2,10 +2,14 @@
 	text-align: center;
 }
 
-.event_group_header {
-	img {
+.event_group {
+	margin-bottom: 3em;
+	h1 img {
 		vertical-align: middle;
 	}
+}
+.event_group:last-child {
+	margin-bottom: 0;
 }
 
 #event_details {

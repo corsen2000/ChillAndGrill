@@ -1,6 +1,6 @@
 <div id="event_index">
 	<div class="event_group">
-		<h1 class="event_group_header">
+		<h1>
 			<%= image_tag("todays_event.png") %>
 		</h1>
 		<% if @todays_events.any? %>
@@ -11,7 +11,7 @@
 	</div>
 
 	<div class="event_group">
-		<h1 class="event_group_header">
+		<h1>
 			<%= image_tag("upcoming_events.png") %>
 		</h1>
 		<% if @future_events.any? %>
@@ -22,7 +22,7 @@
 	</div>
 
 	<div class="event_group">
-		<h1 class="event_group_header">
+		<h1>
 			<%= image_tag("past_events.png") %>
 		</h1>
 		<% if @past_events.any? %>
