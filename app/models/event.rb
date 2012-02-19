@@ -4,6 +4,7 @@ class Event < ActiveRecord::Base
   has_many :invitations
   has_many :notifications
   has_many :invited_users, :through => :invitations, :source => :user
+  has_many :notified_users, :through => :notifications, :source => :user, :conditions => proc { {"notifications.sent_for_event_version" => updated_at} }
 
   validates_presence_of :title, :description, :start
   validate :event_cannot_be_made_private_after_invitations_sent, :on => :update
@@ -16,23 +17,16 @@ class Event < ActiveRecord::Base
     rsvps.where(:user_id => user).first
   end
 
-  def can_come?(user)
-    if self.private
-      invited_users.any? {|u| u == user}
+  def allowed_users
+    if is_private?
+      invited_users
     else
-      true
-    end    
+      User.approved
+    end
   end
 
-  def un_notified_users
-    invited_users = nil
-    notified_users = notifications.where(:sent_for_event_version => updated_at).pluck(:user_id)
-    if is_private?
-      invited_users = invitations.pluck(:user_id)
-    else
-      invited_users = User.approved.pluck(:id)
-    end
-    invited_users - notified_users    
+  def un_notified_users    
+    allowed_users - notified_users
   end
 
   def un_notified_users?
@@ -55,7 +49,7 @@ class Event < ActiveRecord::Base
   end
 
   def event_cannot_be_made_private_after_invitations_sent
-    if is_private?
+    if private_changed? && is_private?
       unless notifications.empty?
         errors.add(:private, "can't be selected after public invitations have been sent")
       end

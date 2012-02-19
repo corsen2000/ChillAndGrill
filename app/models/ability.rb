@@ -18,7 +18,11 @@ class Ability
         if user.role? :guest
           can :manage, Rsvp, :user_id => user.id
           can :read, Event do |event|            
-            event.can_come? user
+            if event.is_private?
+              event.invited_users.any? {|u| u == user}
+            else
+              true
+            end
           end          
         end
         # Other
