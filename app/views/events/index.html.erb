@@ -1,28 +1,34 @@
 <div id="event_index">
-	<h2 class="event_group_header">
-		<%= image_tag("todays_event.png") %>
-	</h2>
-	<% if @todays_events.any? %>
-	    <%= render @todays_events %>
-	<% else %>
-	    <span>Sorry, no events today...</span>
-	<% end %>
+	<div class="event_group">
+		<h1 class="event_group_header">
+			<%= image_tag("todays_event.png") %>
+		</h1>
+		<% if @todays_events.any? %>
+		    <%= render @todays_events %>
+		<% else %>
+		    <span>Sorry, no events today...</span>
+		<% end %>
+	</div>
 
-	<h2 class="event_group_header">
-		<%= image_tag("upcoming_events.png") %>
-	</h2>
-	<% if @future_events.any? %>
-	    <%= render :partial => "event", :collection => @future_events, :locals => {:allow_rsvp => true} %>
-	<% else %>
-	    <span>There are no upcoming events...</span>
-	<% end %>
+	<div class="event_group">
+		<h1 class="event_group_header">
+			<%= image_tag("upcoming_events.png") %>
+		</h1>
+		<% if @future_events.any? %>
+		    <%= render :partial => "event", :collection => @future_events, :locals => {:allow_rsvp => true} %>
+		<% else %>
+		    <span>There are no upcoming events...</span>
+		<% end %>
+	</div>
 
-	<h2 class="event_group_header">
-		<%= image_tag("past_events.png") %>
-	</h2>
-	<% if @past_events.any? %>
-	    <%= render @past_events %>
-	<% else %>
-	    <span>There are no past events...</span>
-	<% end %>
+	<div class="event_group">
+		<h1 class="event_group_header">
+			<%= image_tag("past_events.png") %>
+		</h1>
+		<% if @past_events.any? %>
+		    <%= render @past_events %>
+		<% else %>
+		    <span>There are no past events...</span>
+		<% end %>
+	</div>
 </div>
