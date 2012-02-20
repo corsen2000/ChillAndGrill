@@ -1,12 +1,16 @@
 <div id="event_index">
 	<div class="event_group">
 		<h2>
-			<%= image_tag("todays_event.png") %>
+			<% if @todays_events.length > 1 %>
+				<%= image_tag("todays_events.png") %>
+			<% else %>
+				<%= image_tag("todays_event.png") %>
+			<% end %>			
 		</h2>
 		<% if @todays_events.any? %>
 		    <%= render @todays_events %>
 		<% else %>
-		    <span>Sorry, no events today...</span>
+		    <span>Sorry, no event today.</span>
 		<% end %>
 	</div>
 
