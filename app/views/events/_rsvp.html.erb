@@ -1,5 +1,7 @@
+<% yes = true if local_assigns[:attending].nil? %>
 <div class="rsvp">
-	<span class="user_name"><%= rsvp.user.first_name %></span>  
-  	<%= get_view_rsvp_link(rsvp.user, rsvp.event) %>
-  	<p class="rsvp_comment"><%= rsvp.comment %></p>
+	<span class="user_name"><%= rsvp.user.first_name %></span>
+	<% if yes %>  		
+  		<p class="rsvp_comment"><%= rsvp.comment %></p>
+	<% end %>
 </div>

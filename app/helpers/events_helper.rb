@@ -24,15 +24,6 @@ module EventsHelper
     event.rsvps.where(:user_id => current_user)[0]
   end
 
-  def get_view_rsvp_link(user, event)
-    rsvp = user.rsvps.where(:event_id => @event.id).first
-    if user == current_user
-      link_to 'Edit RSVP', edit_event_rsvp_path(event, rsvp)
-    else
-      link_to 'View RSVP', event_rsvp_path(event, rsvp)
-    end
-  end
-
   def user_has_rsvp(event)
     event.rsvps.any? do |r|
       r.user_id == current_user.id

@@ -16,18 +16,14 @@
   <% end %>
 
   <% if can? :edit, Event %>
-    <%= link_to 'Edit', edit_event_path(@event) %>
+    <%= link_to 'Edit Event', edit_event_path(@event) %>
   <% end %>
 
   <% if can? :destroy, Event %>
-    <%= link_to 'Destroy', @event, confirm: 'Are you sure?', method: :delete %>
+    <%= link_to 'Cancel Event', @event, confirm: 'Are you sure?', method: :delete %>
   <% end %>
 
-  <% unless user_has_rsvp(@event) %>
-  <span>
-    <%= link_to 'RSVP', new_event_rsvp_path(@event) %>
-  </span>
-  <% end %>
+  <%= get_rsvp_link @event %>
 </div>
 
 <h3>Attending This Event</h3>
@@ -36,11 +32,11 @@
 </div>
 
 <h3>Maybe Attending This Event</h3>
-<div class="users_list">
-  <%= render :partial => 'rsvp', :collection => @event.rsvps.maybe %>
+<div class="users_list">  
+  <%= render :partial => 'rsvp', :collection => @event.rsvps.maybe, :locals => {:attending => false} %>
 </div>
 
 <h3>Not Attending This Event</h3>
 <div class="users_list">
-  <%= render :partial => 'rsvp', :collection => @event.rsvps.no %>
+  <%= render :partial => 'rsvp', :collection => @event.rsvps.no, :locals => {:attending => false} %>
 </div>
