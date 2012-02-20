@@ -4,10 +4,12 @@ class Event < ActiveRecord::Base
   has_many :invitations
   has_many :notifications
   has_many :invited_users, :through => :invitations, :source => :user
-  has_many :notified_users, :through => :notifications, :source => :user, :conditions => proc { {"notifications.sent_for_event_version" => updated_at} }
+  has_many :notified_users, :through => :notifications, :source => :user
+  has_many :well_notified_users, :through => :notifications, :source => :user, :conditions => proc { {"notifications.sent_for_event_version" => updated_at} }
 
   validates_presence_of :title, :description, :start
   validate :event_cannot_be_made_private_after_invitations_sent, :on => :update
+  validate :notified_users_cannot_be_uninvited, :on => :update
 
   scope :todays, lambda { where(:start => DateTime.now.beginning_of_day..DateTime.now.end_of_day).order("start") }
   scope :past, lambda { where("start < ?", DateTime.now.beginning_of_day).order("start DESC") }
@@ -26,7 +28,7 @@ class Event < ActiveRecord::Base
   end
 
   def un_notified_users    
-    allowed_users - notified_users
+    allowed_users - well_notified_users
   end
 
   def un_notified_users?
@@ -53,6 +55,13 @@ class Event < ActiveRecord::Base
       unless notifications.empty?
         errors.add(:private, "can't be selected after public invitations have been sent")
       end
+    end
+  end
+
+  def notified_users_cannot_be_uninvited
+    uninvited_users = (notified_users - invited_users).collect {|u| u.first_name}
+    unless uninvited_users.empty?
+      errors[:base] << "The following can't be uninvited because they already recieved invitations: #{uninvited_users.join(", ")}"
     end
   end
 end
