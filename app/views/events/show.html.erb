@@ -16,7 +16,11 @@
   <% end %>
 
   <% if can? :edit, Event %>
-  <%= link_to 'Edit', edit_event_path(@event) %>
+    <%= link_to 'Edit', edit_event_path(@event) %>
+  <% end %>
+
+  <% if can? :destroy, Event %>
+    <%= link_to 'Destroy', @event, confirm: 'Are you sure?', method: :delete %>
   <% end %>
 
   <% unless user_has_rsvp(@event) %>

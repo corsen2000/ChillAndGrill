@@ -1,8 +1,8 @@
 <div id="event_index">
 	<div class="event_group">
-		<h1>
+		<h2>
 			<%= image_tag("todays_event.png") %>
-		</h1>
+		</h2>
 		<% if @todays_events.any? %>
 		    <%= render @todays_events %>
 		<% else %>
@@ -11,9 +11,9 @@
 	</div>
 
 	<div class="event_group">
-		<h1>
+		<h2>
 			<%= image_tag("upcoming_events.png") %>
-		</h1>
+		</h2>
 		<% if @future_events.any? %>
 		    <%= render :partial => "event", :collection => @future_events, :locals => {:allow_rsvp => true} %>
 		<% else %>
@@ -22,9 +22,9 @@
 	</div>
 
 	<div class="event_group">
-		<h1>
+		<h2>
 			<%= image_tag("past_events.png") %>
-		</h1>
+		</h2>
 		<% if @past_events.any? %>
 		    <%= render @past_events %>
 		<% else %>
