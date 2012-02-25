@@ -27,27 +27,8 @@ class Event < ActiveRecord::Base
     end
   end
 
-  def un_notified_users    
-    allowed_users - well_notified_users
-  end
-
-  def un_notified_users?
-    un_notified_users.any?
-  end
-
   def is_private?
     self.private
-  end
-
-  def notify_users
-    if un_notified_users?
-      users_to_notify = un_notified_users
-      users_to_notify.each do |user_id|
-        user = User.find(user_id)
-        Notification.notify_user_for_event(user, self)
-      end
-    end
-    users_to_notify.length
   end
 
   def event_cannot_be_made_private_after_invitations_sent
@@ -59,9 +40,11 @@ class Event < ActiveRecord::Base
   end
 
   def notified_users_cannot_be_uninvited
-    uninvited_users = (notified_users - invited_users).collect {|u| u.first_name}
-    unless uninvited_users.empty?
-      errors[:base] << "The following can't be uninvited because they already recieved invitations: #{uninvited_users.join(", ")}"
+    if is_private?
+      uninvited_users = (notified_users - invited_users).collect {|u| u.first_name}
+      unless uninvited_users.empty?
+        errors[:base] << "The following can't be uninvited because they already recieved invitations: #{uninvited_users.join(", ")}"
+      end
     end
   end
 end

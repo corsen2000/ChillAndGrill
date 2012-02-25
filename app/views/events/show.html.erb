@@ -9,12 +9,6 @@
     <%= format_date_time @event.start, true %>
   </p>
 
-  <% if can?(:send_invitations, Event) && @event.un_notified_users? %>
-  <span>
-    <%= link_to 'Send Invitations', send_invitations_event_path(@event), :method => :post %>
-  </span>
-  <% end %>
-
   <% if can? :edit, Event %>
     <%= link_to 'Edit Event', edit_event_path(@event) %>
   <% end %>

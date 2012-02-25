@@ -39,16 +39,4 @@ class EventsController < ApplicationController
     @event.destroy
     redirect_to events_url
   end
-
-  def send_invitations        
-    event = Event.find(params[:id])
-    authorize! :send_invitations, event
-    count = event.notify_users
-    if count > 0
-      flash[:notice] = "We sent #{count} notifications!"
-    else
-      flash[:notice] = "There were no users to notify..."
-    end
-    redirect_to event_path(event)
-  end
 end
