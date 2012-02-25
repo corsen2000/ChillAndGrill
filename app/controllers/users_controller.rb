@@ -1,5 +1,6 @@
-class UsersController < ApplicationController
+class UsersController < ApplicationController  
   load_and_authorize_resource
+  force_ssl
 
   def index
   end
@@ -8,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @title = "Sign Up"
+    @title = "Sign Up"    
   end
 
   def edit
