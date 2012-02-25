@@ -29,4 +29,10 @@ module EventsHelper
       r.user_id == current_user.id
     end
   end
+
+  def user_select_checkbox(event, user)
+    already_invited = event.invited_users.include? user
+    (check_box_tag :invited_user_ids, user.id, already_invited, :name => 'event[invited_user_ids][]', :id => "inv_box_#{user.id}", :disabled => already_invited) +
+    (label_tag :invited_user_ids, user.first_name, {:for => "inv_box_#{user.id}", :class => "checkbox_label"})
+  end
 end

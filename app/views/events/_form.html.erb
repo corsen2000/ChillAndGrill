@@ -17,7 +17,7 @@
   </div>
 
   <div class="field">    
-    <%= f.check_box :private %>
+    <%= f.check_box :private, :disabled => !@event.is_private? && !@event.new_record? %>
     <%= f.label :private, {:class => "checkbox_label"} %>
   </div>
 
@@ -25,8 +25,7 @@
     <label>Invited Users</label>
     <% User.all.each do |user| %>
       <div class="field">
-        <%= check_box_tag :invited_user_ids, user.id, @event.invitations.any? {|inv| inv.user_id == user.id}, :name => 'event[invited_user_ids][]', :id => "inv_box_#{user.id}" %>
-        <%= label_tag :invited_user_ids, user.first_name, {:for => "inv_box_#{user.id}", :class => "checkbox_label"} -%>
+        <%= user_select_checkbox @event, user %>
       </div>
     <% end %>
   </div>
