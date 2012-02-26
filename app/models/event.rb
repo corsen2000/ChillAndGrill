@@ -3,7 +3,7 @@ class Event < ActiveRecord::Base
   has_many :users, :through => :rsvps
   has_many :invitations
   has_many :notifications
-  has_many :invited_users, :through => :invitations, :source => :user, :before_remove => proc { raise ActiveRecord::Rollback.new}
+  has_many :invited_users, :through => :invitations, :source => :user
 
   validates_presence_of :title, :description, :start
   validate :event_cannot_be_made_private, :on => :update
@@ -33,4 +33,9 @@ class Event < ActiveRecord::Base
       errors.add(:private, "can only be selected on event creation")
     end
   end
+
+  def invited_user_ids_with_guard=(ids)
+    self.invited_user_ids_without_guard = self.invited_user_ids.concat(ids).uniq
+  end
+  alias_method_chain :invited_user_ids=, :guard
 end
