@@ -4,14 +4,14 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <h1><%= @user.full_name %> you are invited to <%= @event.title %> by ChillAndGrill.info</h1>
+    <h1><%= @user.full_name %>, you are invited to <%= @event.title %>.</h1>
     Start: <%= @event.start %>
     <p style="margin: 1em 0;">
       <%= @event.description %>
     </p>
     <% if @event.private %>
       <div>
-        Please note that this is a private event
+        Please note that this is a private event.
       </div>
     <% end %>
   </body>
