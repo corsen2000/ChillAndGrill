@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   force_ssl :only => [:new, :create]
 
   def index
+    redirect_to root_url, :protocol => "foo"
   end
 
   def show
