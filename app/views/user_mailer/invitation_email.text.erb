@@ -1,8 +1,10 @@
 <%= @user.full_name %>, you are invited to <%= @event.title %>.
 ===============================================
-Start: <%= @event.start %>
+Start: <%= format_date_time @event.start %>
 
 <%= @event.description %>
+
+To sign up for this event please follow this link <%= link_to "Chill and Grill", event_url(@event) %>
 
 <% if @event.private %>
 Please note that this is a private event.

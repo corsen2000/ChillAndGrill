@@ -1,4 +1,5 @@
 <%= @event.title %> has been canceled.%>
 ===============================================
 We apologize, but the event <%= @event.title %> has been canceled.
-This event was supposed to take place on: <%= @event.start %>      
+This event was supposed to take place on: <%= format_date_time @event.start %>
+To see additional events please follow this link <%= link_to "Chill and Grill", events_url %>

@@ -5,9 +5,12 @@
   </head>
   <body>
     <h1><%= @user.full_name %>, you are invited to <%= @event.title %>.</h1>
-    Start: <%= @event.start %>
+    Start: <%= format_date_time @event.start %>
     <p style="margin: 1em 0;">
       <%= @event.description %>
+    </p>
+    <p>
+      To sign up for this event please follow this link <%= link_to "Chill and Grill", event_url(@event) %>
     </p>
     <% if @event.private %>
       <div>

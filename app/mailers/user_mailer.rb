@@ -1,4 +1,5 @@
 class UserMailer < ActionMailer::Base
+  helper :events
   default from: ENV["CGMAILER_ACCOUNT"]
   
   def welcome_email(user)
