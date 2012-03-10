@@ -2,9 +2,7 @@
   <h2 id="title">
     <%= @event.title %>
   </h2>
-  <p id="description">
-    <%= @event.description %>
-  </p>
+  <p id="description"><%= @event.description %></p>
   <p id="start">
     <%= format_date_time @event.start, true %>
   </p>
