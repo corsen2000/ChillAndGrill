@@ -1,7 +1,6 @@
 #event_index {
 	text-align: center;
 }
-
 .event_group {
 	margin-bottom: 3em;
 	h2 img {
@@ -11,7 +10,6 @@
 .event_group:last-child {
 	margin-bottom: 0;
 }
-
 #event_details {
 	text-align: center;
 	#title {
@@ -22,5 +20,10 @@
 	}
 	#start {
 		font-weight: bold;
+	}
+}
+.event_summary, #event_details {
+	.description, #description {
+		white-space: pre;
 	}
 }

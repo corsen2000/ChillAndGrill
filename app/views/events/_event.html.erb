@@ -1,5 +1,5 @@
 <% allow_rsvp ||= false %>
-<div>
+<div class="event_summary">
     <h2>
         <span><%= event.title %></span>
         <span><%= format_date_time event.start %></span>
@@ -8,5 +8,5 @@
         <%= get_rsvp_link event %>
     <% end %>        
     <%= link_to 'Details', event %>
-    <p><%= event.description %></p>
+    <p class="description"><%= event.description %></p>
 </div>
