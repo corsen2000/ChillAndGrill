@@ -6,10 +6,14 @@ class SessionController < ApplicationController
   end
 
   def create
-    user = User.find_by_email(params[:email].downcase!)
+    user = User.find_by_email(params[:email].downcase)
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to root_url(:protocol => "http")
+      if session[:login_redirect].nil?
+        redirect_to root_url(:protocol => "http")
+      else
+        redirect_to session[:login_redirect]
+      end      
     else
       flash.now.alert = "Invalid email or password"
       render "new"
