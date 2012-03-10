@@ -12,7 +12,9 @@ class SessionController < ApplicationController
       if session[:login_redirect].nil?
         redirect_to root_url(:protocol => "http")
       else
-        redirect_to session[:login_redirect]
+        redirect_url = session[:login_redirect]
+        session[:login_redirect] = nil
+        redirect_to redirect_url
       end      
     else
       flash.now.alert = "Invalid email or password"
