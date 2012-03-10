@@ -28,6 +28,12 @@ class Event < ActiveRecord::Base
     self.private
   end
 
+  def no_rsvp
+    allowed_users.select do |user|
+      rsvp_for_user(user).nil?
+    end
+  end
+
   def event_cannot_be_made_private
     if private_changed? && is_private?
       errors.add(:private, "can only be selected on event creation")

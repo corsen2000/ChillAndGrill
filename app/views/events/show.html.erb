@@ -32,3 +32,12 @@
 <div class="users_list">
   <%= render :partial => 'rsvp', :collection => @event.rsvps.no, :locals => {:attending => false} %>
 </div>
+
+<% if can? :manage, Event %>
+  <h3>No RSVP</h3>
+  <div id="no_rsvp">
+    <% @event.no_rsvp.each do |user| %>
+      <span class="user_name"><%= user.first_name %></span><br>
+    <% end %>
+  </div>
+<% end%>
