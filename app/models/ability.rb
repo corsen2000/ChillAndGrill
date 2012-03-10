@@ -12,6 +12,7 @@ class Ability
         # Moderator        
         if user.role? :moderator
           can :manage, Event
+          can :manage, Rsvp
           can :send_invitations, Event
         end
         # Guest

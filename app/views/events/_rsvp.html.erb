@@ -3,5 +3,7 @@
 	<span class="user_name"><%= rsvp.user.first_name %></span>
 	<% if yes %>  		
   		<p class="rsvp_comment"><%= rsvp.comment %></p>
+	<% elsif can? :manage, rsvp %>
+		<%= link_to "View RSVP", event_rsvp_path(rsvp.event, rsvp) %>
 	<% end %>
 </div>
