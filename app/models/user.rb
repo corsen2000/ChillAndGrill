@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   validates :email, :email => true, :uniqueness => true
   validate :confirm_current_password, :on => :update, :if => :changing_password
 
+  before_save { |user| user.email.downcase! }
+
   scope :with_role, lambda { |role| where("roles_mask & #{2**ROLES.index(role.to_s)} > 0")}
   scope :approved, with_role("guest")
 
