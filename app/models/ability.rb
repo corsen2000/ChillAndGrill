@@ -17,9 +17,9 @@ class Ability
         end
         # Guest
         if user.role? :guest
-          can :manage, Rsvp, :user_id => user.id
-          cannot [:create, :update], Rsvp do |rsvp|
-            rsvp.event.start < DateTime.now
+          can :read, Rsvp, :user_id => user.id
+          can [:create, :update], Rsvp do |rsvp|
+            rsvp.event.start >= DateTime.now
           end
           can :read, Event do |event|            
             if event.is_private?
