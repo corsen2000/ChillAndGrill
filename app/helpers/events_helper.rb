@@ -8,11 +8,11 @@ module EventsHelper
   end
 
   def get_rsvp_link(event)
-    if registered? event
+    if registered?(event)
       rsvp = get_rsvp(event)      
-      link_to "Edit RSVP (#{rsvp.status})", edit_event_rsvp_path(event, rsvp)
+      link_to "Edit RSVP (#{rsvp.status})", edit_event_rsvp_path(event, rsvp) if can? :update, rsvp
     else
-      link_to 'RSVP', new_event_rsvp_path(event)
+      link_to 'RSVP', new_event_rsvp_path(event) if can? :create, Rsvp
     end
   end
 
