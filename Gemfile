@@ -6,6 +6,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'email_validator'
 gem 'cancan'
 gem 'redcarpet'
+gem 'thin'
 
 
 # Gems used only for assets and not required
@@ -16,8 +17,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development, :test do
-  #gem 'thin'
+group :development, :test do  
   # To use debugger
   #gem 'linecache19', '0.5.13', :path => "~/.rvm/gems/ruby-1.9.3-p0/gems/linecache19-0.5.13/"
   #gem 'ruby-debug-base19', '0.11.26', :path => "~/.rvm/gems/ruby-1.9.3-p0/gems/ruby-debug-base19-0.11.26/"
