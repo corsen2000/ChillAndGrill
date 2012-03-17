@@ -8,5 +8,5 @@
         <%= get_rsvp_link event %>
     <% end %>        
     <%= link_to 'Details', event %>
-    <p class="description"><%= event.description %></p>
+    <div class="description"><%= markdown(event.description) %></div>
 </div>

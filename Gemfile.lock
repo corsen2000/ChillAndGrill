@@ -96,6 +96,7 @@ GEM
     rake (0.9.2.2)
     rdoc (3.12)
       json (~> 1.4)
+    redcarpet (2.1.1)
     ruby-debug19 (0.11.6)
       columnize (>= 0.3.1)
       linecache19 (>= 0.5.11)
@@ -134,6 +135,7 @@ DEPENDENCIES
   linecache19 (= 0.5.13)!
   pg
   rails (= 3.2.1)
+  redcarpet
   ruby-debug-base19 (= 0.11.26)!
   ruby-debug19
   sass-rails (~> 3.2.3)
