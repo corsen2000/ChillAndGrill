@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def create
     authorize! :assign_roles, @user if params[:user][:roles]
     if @user.save
-      redirect_to root_url(:protocol => "http"), :notice => 'Account Created.  Plase check your email for instructions.'
+      redirect_to root_url(:protocol => "http"), :notice => 'Account Created.  Please check your email for instructions.'
     else
       render action: "new"
     end
