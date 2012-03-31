@@ -31,13 +31,11 @@ module EventsHelper
   end
 
   def get_total_yes(event)
-    total = Rsvp.total_yes event
-    total == 0 ? "" : total
+    Rsvp.total_yes event
   end
 
   def get_total_maybe(event)
-    total = Rsvp.total_maybe event
-    total == 0 ? "" : total
+    Rsvp.total_maybe event    
   end
 
   def user_select_checkbox(event, user)
