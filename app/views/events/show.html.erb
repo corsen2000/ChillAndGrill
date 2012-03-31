@@ -28,13 +28,13 @@
   <%= render :partial => 'rsvp', :collection => @event.rsvps.maybe, :locals => {:attending => false} %>
 </div>
 
-<h3>Not Attending This Event</h3>
+<h3>Not Attending This Event (<%= @event.rsvps.no.length %>)</h3>
 <div class="users_list">
   <%= render :partial => 'rsvp', :collection => @event.rsvps.no, :locals => {:attending => false} %>
 </div>
 
 <% if can? :manage, Event %>
-  <h3>No RSVP</h3>
+  <h3>No RSVP (<%= @event.no_rsvp.length %>)</h3>
   <div id="no_rsvp">
     <% @event.no_rsvp.each do |user| %>
       <span class="user_name"><%= user.first_name %></span><br>
