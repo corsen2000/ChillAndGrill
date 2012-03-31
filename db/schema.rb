@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120218142122) do
+ActiveRecord::Schema.define(:version => 20120331185751) do
 
   create_table "events", :force => true do |t|
     t.string   "title"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20120218142122) do
     t.datetime "updated_at"
     t.string   "status"
     t.text     "comment"
+    t.integer  "guests",     :default => 0
   end
 
   add_index "rsvps", ["event_id", "user_id"], :name => "by_event_and_user", :unique => true
