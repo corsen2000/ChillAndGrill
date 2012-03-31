@@ -15,6 +15,9 @@
 /tmp
 /.idea/*
 
+# Ignore precompiled assets
+public/assets/*
+
 # Ignore Sublime Files
 Chill\ And\ Grill.sublime-project
 Chill\ And\ Grill.sublime-workspace

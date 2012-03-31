@@ -40,7 +40,11 @@ gem 'jquery-rails'
 # Deploy with Capistrano
 # gem 'capistrano'
 
-group :test do
-  # Pretty printed test output
+gem "rspec-rails", :group => [:test, :development]
+group :test do  
+  gem "factory_girl_rails"
+  gem "capybara"
+  gem "guard-rspec"
+  gem 'launchy'
   gem 'turn', '0.8.2', :require => false
 end

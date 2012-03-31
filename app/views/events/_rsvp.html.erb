@@ -1,6 +1,6 @@
 <% yes = true if local_assigns[:attending].nil? %>
 <div class="rsvp">
-	<span class="user_name"><%= rsvp.user.first_name %></span>
+	<span class="user_name"><%= "#{rsvp.user.first_name} #{get_guests rsvp}" %></span>
 	<% if yes %>  		
   		<p class="rsvp_comment"><%= rsvp.comment %></p>
 	<% elsif can? :manage, rsvp %>

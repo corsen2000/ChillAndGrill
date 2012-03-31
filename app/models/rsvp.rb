@@ -7,4 +7,12 @@ class Rsvp < ActiveRecord::Base
   scope :yes, where(:status => 'Yes')
   scope :maybe, where(:status => 'Maybe')
   scope :no, where(:status => 'No')
+
+  def self.total_yes(event)
+    event.rsvps.yes.sum('guests') + event.rsvps.yes.length
+  end
+
+  def self.total_maybe(event)
+    event.rsvps.maybe.sum('guests') + event.rsvps.maybe.length
+  end
 end

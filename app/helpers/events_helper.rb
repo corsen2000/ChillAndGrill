@@ -30,6 +30,16 @@ module EventsHelper
     end
   end
 
+  def get_total_yes(event)
+    total = Rsvp.total_yes event
+    total == 0 ? "" : total
+  end
+
+  def get_total_maybe(event)
+    total = Rsvp.total_maybe event
+    total == 0 ? "" : total
+  end
+
   def user_select_checkbox(event, user)
     already_invited = event.invited_users.include? user
     (check_box_tag :invited_user_ids, user.id, already_invited, :name => 'event[invited_user_ids][]', :id => "inv_box_#{user.id}", :disabled => already_invited) +

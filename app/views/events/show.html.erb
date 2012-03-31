@@ -18,12 +18,12 @@
   <%= get_rsvp_link @event %>
 </div>
 
-<h3>Attending This Event</h3>
+<h3>Attending This Event (<%= get_total_yes @event %>)</h3>
 <div class="users_list">
   <%= render :partial => 'rsvp', :collection => @event.rsvps.yes %>
 </div>
 
-<h3>Maybe Attending This Event</h3>
+<h3>Maybe Attending This Event (<%= get_total_maybe @event %>)</h3>
 <div class="users_list">  
   <%= render :partial => 'rsvp', :collection => @event.rsvps.maybe, :locals => {:attending => false} %>
 </div>
