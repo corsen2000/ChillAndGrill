@@ -29,7 +29,7 @@ class RsvpsController < ApplicationController
 
   def update
     if @rsvp.update_attributes(params[:rsvp])
-      redirect_to session[:rsvp_edit_referer]
+      redirect_to session[:rsvp_edit_referer] || event_path(@rsvp.event)
     else
       redirect_to root_path, alert: 'Something went wrong...'
     end
