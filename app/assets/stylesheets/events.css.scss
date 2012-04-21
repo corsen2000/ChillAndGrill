@@ -10,12 +10,12 @@
 .event_group:last-child {
 	margin-bottom: 0;
 }
-#event_details {
+#event_details, .event_summary {
 	text-align: center;
 	#title {
 		font-weight: bold;
 	}
-	#description {
+	#description, .description {
 		ul, ol {
 			list-style-type: none;
 			padding: 0;
