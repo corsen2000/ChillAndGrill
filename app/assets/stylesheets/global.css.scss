@@ -17,6 +17,10 @@ h2, h3, th {
     }
 }
 
+a.header_link, a.header_link:visited {
+    color: red;
+}
+
 label {
     display: block;
     font-weight: bold;

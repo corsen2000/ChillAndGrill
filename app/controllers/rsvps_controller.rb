@@ -7,6 +7,9 @@ class RsvpsController < ApplicationController
 
   def new
     @title = "RSVP"
+    unless params[:choose]
+      @rsvp.user_id = current_user.id
+    end
   end
 
   def edit
@@ -15,7 +18,6 @@ class RsvpsController < ApplicationController
   end
 
   def create
-    @rsvp.user = current_user
     if @rsvp.save
       if request.referer == events_url
         redirect_to events_path
