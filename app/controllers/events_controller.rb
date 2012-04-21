@@ -27,16 +27,27 @@ class EventsController < ApplicationController
   end
 
   def update
-    params[:event][:invited_user_ids] ||= []
-    if @event.update_attributes(params[:event])
-      redirect_to @event
+    if params[:quiet_update]
+      Event.observers.disable :all do
+        perform_update  
+      end
     else
-      render action: "edit"
+      perform_update
     end
   end
 
   def destroy
     @event.destroy
     redirect_to events_url
+  end
+
+  private
+  def perform_update
+    params[:event][:invited_user_ids] ||= []
+    if @event.update_attributes(params[:event])
+      redirect_to @event
+    else
+      render action: "edit"
+    end
   end
 end

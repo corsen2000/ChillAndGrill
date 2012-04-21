@@ -40,5 +40,8 @@
   </div>
   <div class="actions">
     <%= f.submit %>
+    <% unless @event.new_record? %>
+    <%= f.submit "Quiet Update Event", :name => :quiet_update %>
+    <% end %>
   </div>
 <% end %>
