@@ -5,7 +5,7 @@
 		<%= f.select :status, [['Yes', 'Yes'], ['Maybe', 'Maybe'], ['No', 'No']] %>
 	</div>
 	<div class="field">
-		<%= f.label :guests %>
+		<%= f.label :guests, 'Additional Guests' %>
 		<%= f.select :guests, (0..10).collect { |n| [n, n] } %>
 	</div>
 	<div class="field">
