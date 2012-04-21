@@ -1,0 +1,15 @@
+<%= @event.title %> is coming soon!
+===================================
+Start: <%= format_date_time @event.start %>
+
+<%= @event.description %>
+
+<% unless @have_rsvp %>
+  To sign up for this event please follow this link <%= link_to "Chill and Grill", event_url(@event) %>
+<% end %>
+
+<% if @event.private %>
+    Please note that this is a private event.
+<% end %>
+
+<%= render "footer" %>

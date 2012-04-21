@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1><%= @event.title %> is coming soon!</h1>
+    Start: <%= format_date_time @event.start %>
+    <p style="margin: 1em 0;">
+      <%= @event.description %>
+    </p>
+    <% unless @have_rsvp %>
+    <p>
+      To sign up for this event please follow this link <%= link_to "Chill and Grill", event_url(@event) %>
+    </p>
+    <% end %>
+    <% if @event.private %>
+      <div>
+        Please note that this is a private event.
+      </div>
+    <% end %>
+    <%= render "footer" %>
+  </body>
+</html>

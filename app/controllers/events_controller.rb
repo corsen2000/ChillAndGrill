@@ -41,6 +41,14 @@ class EventsController < ApplicationController
     redirect_to events_url
   end
 
+  def remind  
+    have_rsvp = @event.rsvps.yes + @event.rsvps.maybe
+    have_rsvp = have_rsvp.collect {|rsvp| User.find(rsvp.user_id)}
+    UserMailer.reminder_email(have_rsvp, @event).deliver if have_rsvp.length > 0
+    UserMailer.reminder_email(@event.no_rsvp, @event, false).deliver if @event.no_rsvp.length > 0
+    redirect_to request.referer
+  end
+
   private
   def perform_update
     params[:event][:invited_user_ids] ||= []

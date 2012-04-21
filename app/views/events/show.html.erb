@@ -15,6 +15,10 @@
     <%= link_to 'Cancel Event', @event, confirm: 'Are you sure?', method: :delete %>
   <% end %>
 
+  <% if can? :manage, Event %>
+    <%= link_to 'Send Reminders', remind_event_path(@event), :confirm => 'Are you sure?', :method => :post %>
+  <% end %>
+
   <%= get_rsvp_link @event %>
 </div>
 

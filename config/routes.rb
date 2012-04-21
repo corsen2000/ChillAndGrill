@@ -5,6 +5,7 @@ ChillAndGrill::Application.routes.draw do
   end
   resources :events do
     resources :rsvps, :only => [:show, :new, :create, :edit, :update]
+    post 'remind', :on => :member
   end
   resource :session, :controller => "session", :only => [:new, :create, :destroy]
   match 'about' => "pages#about"

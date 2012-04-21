@@ -24,4 +24,11 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail(:to => user.email, :subject => "Registration Approved At Chill And Grill", :cc => ENV["CGMAILER_CC"])
   end
+
+  def reminder_email(users, event, have_rsvp = true)
+    @event = event
+    @have_rsvp = have_rsvp
+    subject = (have_rsvp ? "Reminder" : "Missing RSVP") + " for #{event.title} at the Chill And Grill"
+    mail(:to => ENV["CGMAILER_ACCOUNT"], :bcc => users.collect {|user| user.email}, :subject => subject)
+  end
 end
