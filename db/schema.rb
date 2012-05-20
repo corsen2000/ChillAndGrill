@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(:version => 20120520203920) do
     t.string   "title"
     t.text     "description", :limit => 255
     t.datetime "start"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.boolean  "private"
   end
 
@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(:version => 20120520203920) do
   create_table "rsvps", :force => true do |t|
     t.integer  "user_id"
     t.integer  "event_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.string   "status"
     t.text     "comment"
     t.integer  "guests",     :default => 0
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(:version => 20120520203920) do
     t.string   "password_digest"
     t.string   "first_name"
     t.string   "last_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.integer  "roles_mask"
   end
 
